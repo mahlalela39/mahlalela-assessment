@@ -10,11 +10,20 @@ Please use this template to create your own repository of this test and share yo
 * Give your repository a name. Keep the repository public as you'll need to share it with us to review.
 * When you've completed all the questions, share your repository with us by sending us the repo's URL.
 # Linux
-* What is the command to list the contents of a direcory, line by line and ordered by size ascending in human readable format?
-* How would you add a DNS server to a network interface in Linux?
-* If the DNS server you've just added is not reachable, how can you get any particular hostname to resolve locally? 
-* How would you check for SELinux related errors?
-* Write the commands to add 30GB disk space to a logical volume named "docker" that belongs to a logical group named "docker-group".
+* What is the command to list the contents of a direcory, line by line and ordered by size ascending in human readable format?\
+**ls -lSrh**
+* How would you add a DNS server to a network interface in Linux?\
+**vi /etc/resolv.conf\
+  add "nameserver  DNSIP" then save\
+  OR\
+  echo "DNS1=DNSIP" >> /etc/sysconfig/network-scripts/ifcfg-eth0**\
+* If the DNS server you've just added is not reachable, how can you get any particular hostname to resolve locally? \
+**Add hostname and IP in /etc/hosts. Example below\
+  echo "ServerIP    fullhostname     hostnameWithoutDomain" >> /etc/hosts**
+* How would you check for SELinux related errors?\
+**Check selinux status to see if it is enforcing or permissive using "getenforce" then check logs on /var/log/audit/audit.log file**
+* Write the commands to add 30GB disk space to a logical volume named "docker" that belongs to a logical group named "docker-group".\
+**lvcreate -n docker -L 30G docker-group**
 * In the root of this repository, create a Bash script called "listit.sh", when executed, this script must do the following (in order):
     * Create a file called directories.list that contains the directory names only of the current directory.
     * Add a line at the beginning of the directories.list file that reads "line one's line".
@@ -43,16 +52,26 @@ Please use this template to create your own repository of this test and share yo
 
 # OpenShift / OKD
 For the questions below, please make use of the OpenShift CLI (oc) where applicable.
-* Write the command used to login to a remote OpenShift cluster.
-* Write the command to add the "cluster-admin" cluster role to a user called "clark".
-* Write the command used to list all pods in the "smallville" project (namespace).
-* Write the command to scale an application (deployment config) called "dailyplanet" to 2 pods.
-* Write the command to gain remote shell access to a pod called "lex" in the "smallville" project (namespace).
+* Write the command used to login to a remote OpenShift cluster.\
+**oc login**
+* Write the command to add the "cluster-admin" cluster role to a user called "clark".\
+**oc adm policy add-cluster-role-to-user cluster-admin clark**
+* Write the command used to list all pods in the "smallville" project (namespace).\
+**oc get pod -n smallville**
+* Write the command to scale an application (deployment config) called "dailyplanet" to 2 pods.\
+**oc scale dc dailyplanet --replicas=2**
+* Write the command to gain remote shell access to a pod called "lex" in the "smallville" project (namespace).\
+**oc rsh lex -n smallville**
 * Write the command to export a secret called "loislane" in JSon format, the secret is in the "dailyplanet" project (namespace).
+**oc get secrets loislane -o json -n dailyplanet**\
+**Then take the output and convert it from base64 to plain text "base64 -d"**
 * Add a file called "Krypton" (in YAML format) to this repo that contains the resource defintion for a Persistent Volume Claim with the following properties:
     * Points to a Persistent Volume called "zod".
     * Requests 5GB of storage.
     * The volume can be mounted as read-write by more than one node.
 # General
-* How would you ensure any change made to this Dockerfile is source controlled, approved, tested and deployed. Explain which tools you will use as if this was going into a production environment.
+* How would you ensure any change made to this Dockerfile is source controlled, approved, tested and deployed. Explain which tools you will use as if this was going into a production environment.\
+**I can lockdown pushing changes direct to master on bibucket or github, that will enforce working on branches and merge to master using pull request with a minimum number on reviwers.**\
+**For deployments I can use jenkins or bamboo to build and trigger deployments into testing environments. Use ansible or bash scripting to perform deployment tasks. To make sure that all changes are fully tested, I can use tools like jira and restrict bamboo or jenkins from skipping lower environments**
+
 * Commit and push your changes.
