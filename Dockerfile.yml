@@ -5,7 +5,7 @@ FROM mariadb:latest
 ARG BRUCE=WAYNE
 
 #Add value of BRUCE to BATCAVE file
-RUN echo "$BRUCE" > /BATCAVE
+RUN ECHO "$BRUCE" > /BATCAVE
 
 #Image port
-expose 3307
+EXPOSE 3307
