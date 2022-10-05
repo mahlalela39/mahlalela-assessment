@@ -19,11 +19,11 @@ Please use this template to create your own repository of this test and share yo
   echo "DNS1=DNSIP" >> /etc/sysconfig/network-scripts/ifcfg-eth0**\
 * If the DNS server you've just added is not reachable, how can you get any particular hostname to resolve locally? \
 **Add hostname and IP in /etc/hosts. Example below\
-  echo "ServerIP    fullhostname     hostnameWithoutDomain" >> /etc/hosts**\
+  echo "ServerIP    fullhostname     hostnameWithoutDomain" >> /etc/hosts**
 * How would you check for SELinux related errors?\
-**Check selinux status to see if it is enforcing or permissive using "getenforce" then check logs on /var/log/audit/audit.log file\
+**Check selinux status to see if it is enforcing or permissive using "getenforce" then check logs on /var/log/audit/audit.log file**
 * Write the commands to add 30GB disk space to a logical volume named "docker" that belongs to a logical group named "docker-group".\
-**lvcreate -n docker -L 30G docker-group**\
+**lvcreate -n docker -L 30G docker-group**
 * In the root of this repository, create a Bash script called "listit.sh", when executed, this script must do the following (in order):
     * Create a file called directories.list that contains the directory names only of the current directory.
     * Add a line at the beginning of the directories.list file that reads "line one's line".
