@@ -70,5 +70,8 @@ For the questions below, please make use of the OpenShift CLI (oc) where applica
     * Requests 5GB of storage.
     * The volume can be mounted as read-write by more than one node.
 # General
-* How would you ensure any change made to this Dockerfile is source controlled, approved, tested and deployed. Explain which tools you will use as if this was going into a production environment.
+* How would you ensure any change made to this Dockerfile is source controlled, approved, tested and deployed. Explain which tools you will use as if this was going into a production environment.\
+**I can lockdown pushing changes direct to master on bibucket or github, that will enforce working on branches and merge to master using pull request with a minimum number on reviwers.**\
+**For deployments I can use jenkins or bamboo to build and trigger deployments into testing environments. Use ansible or bash scripting to perform deployment tasks. To make sure that all changes are fully tested, I can use tools like jira and restrict bamboo or jenkins from skipping lower environments**
+
 * Commit and push your changes.
